@@ -20,7 +20,7 @@ if excel_files:
 
     #  将所有数据合并到一个DataFrame中，并将它写入输出文件中
     combined_df = pd.concat(all_data_frames, axis=0, ignore_index=True) #带搜索处理的文件总表
-    print(combined_df.shape)
+    print("合并后的表格共计%s行数据" %combined_df.shape[0])
 else:
     print('未找到文件')
 
@@ -32,7 +32,7 @@ key_data = pd.read_excel("C:\\Users\\admin\\PycharmProjects\\义乌购\\义乌�
 keywordList = []
 appear_numList = []
 for key in key_data["关键词"]:
-    tmp_df = combined_df[(combined_df['标题'].str.find(key) != -1)]
+    tmp_df = combined_df[(combined_df['标题'].str.find(key) != -1)]  #没找到字符串返回-1
     keywordList.append(key)
     appear_numList.append(tmp_df.shape[0])
 
